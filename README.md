@@ -1,50 +1,172 @@
-# Welcome to your Expo app 👋
+<!--- cSpell:disable --->
+# BriggesDecoration - Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil desarrollada en **React Native + Expo + TypeScript**, utilizando **Google Authentication** y **Google Drive** como sistema de almacenamiento en la nube.  
+Configurada para un entorno de desarrollo moderno usando **DevContainers**, **Docker** y automatizaciones con **Makefile**.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Tecnologías
 
-   ```bash
-   npm install
-   ```
+- React Native + Expo
+- TypeScript
+- Firebase Authentication (Google Sign-In)
+- Google Drive API
+- VSCode Dev Containers
+- Docker
+- Makefile
 
-2. Start the app
+---
 
-   ```bash
-    npx expo start
-   ```
+## 📦 Estructura del Proyecto
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+CortinasApp/
+├── .devcontainer/
+│   ├── devcontainer.json
+│   └── Dockerfile
+├── .vscode/
+│   ├── tasks.json
+│   └── launch.json
+├── app/
+├── package.json
+├── tsconfig.json
+├── Makefile
+└── README.md
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🛠️ Requerimientos Previos
 
-To learn more about developing your project with Expo, look at the following resources:
+- [Docker](https://www.docker.com/) instalado y corriendo.
+- [VSCode](https://code.visualstudio.com/) instalado.
+- Extensión **Dev Containers** en VSCode: [Dev Containers - Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## 🛠️ Primeros Pasos
 
-Join our community of developers creating universal apps.
+### 1. Clonar el proyecto
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+git clone https://github.com/tuusuario/cortinas-app.git
+cd cortinas-app
+```
+
+### 2. Abrir el proyecto en VSCode como **DevContainer**
+
+- Abre el proyecto en VSCode.
+- Ejecuta `Ctrl+Shift+P → Dev Containers: Reopen in Container`.
+
+Esto montará automáticamente el contenedor con Node.js, Expo CLI, y todas las extensiones necesarias.
+
+### 3. Instalar dependencias (opcional)
+
+```bash
+make install
+```
+
+---
+
+## 🔥 Uso de Makefile
+
+Puedes automatizar acciones comunes:
+
+| Comando | Descripción |
+|:---|:---|
+| `make start` | Inicia el servidor de desarrollo de Expo (modo tunnel). |
+| `make android` | Ejecuta la app en un dispositivo Android conectado. |
+| `make build-apk` | Compila un APK usando EAS Build para pruebas. |
+| `make install` | Instala las dependencias de npm. |
+| `make clean` | Elimina `node_modules` y reinstala dependencias. |
+| `make help` | Muestra todos los comandos disponibles. |
+
+Ejemplo:
+
+```bash
+make start
+```
+
+---
+
+## 🚧 Configuración de Firebase Authentication (Google Sign-In)
+
+1. Crea un proyecto en [Firebase Console](https://console.firebase.google.com/).
+2. Habilita **Authentication > Google**.
+3. Configura tu aplicación móvil (Android/iOS) en el proyecto.
+4. Obtén el archivo de configuración `google-services.json` para Android o los valores para iOS.
+5. Usa `expo-auth-session` o `expo-google-auth-session` para implementar el flujo.
+
+---
+
+## ☁️ Configuración de Acceso a Google Drive
+
+1. Crea un proyecto en [Google Cloud Console](https://console.cloud.google.com/).
+2. Habilita la **Google Drive API**.
+3. Crea credenciales OAuth 2.0.
+4. Configura los `scopes` necesarios:
+   - `https://www.googleapis.com/auth/drive.file`
+5. Utiliza `expo-auth-session` para autenticar y acceder a los archivos de Drive.
+
+---
+
+## 📄 Variables de Entorno
+
+Crea un archivo `.env` en la raíz del proyecto:
+
+```dotenv
+GOOGLE_CLIENT_ID=tu-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=tu-client-secret
+FIREBASE_API_KEY=...
+FIREBASE_AUTH_DOMAIN=...
+```
+
+Utiliza la librería [react-native-dotenv](https://www.npmjs.com/package/react-native-dotenv) o directamente las variables de Expo.
+
+---
+
+## 📱 Flujo de la Aplicación
+
+- **Registro/Login:** con cuenta de Google.
+- **Lista de Clientes:** visualizar clientes registrados.
+- **Lista de Productos:** catálogo disponible.
+- **Registro de Compras:** asociar productos comprados por cliente.
+- **Generador de Cuentas de Cobro:** visualizar o exportar recibos.
+
+Toda la información se guarda en un **archivo JSON sincronizado en Google Drive**.
+
+---
+
+## 📃 Comandos rápidos (VSCode)
+
+También puedes usar `Ctrl+Shift+P → Run Task` en VSCode para:
+
+- Start Expo
+- Build APK (EAS)
+- Install Dependencies
+
+---
+
+## 📚 Referencias
+
+- [Expo Documentation](https://docs.expo.dev/)
+- [Firebase Authentication Docs](https://firebase.google.com/docs/auth)
+- [Google Drive API Documentation](https://developers.google.com/drive)
+- [Development Containers Spec](https://containers.dev/)
+
+---
+
+## ✅ Estado Actual
+
+- [x] DevContainer listo con Node.js, Expo CLI y utilidades.
+- [x] Proyecto base en Expo + TypeScript.
+- [x] Dockerizado completamente.
+- [x] Makefile de automatización.
+- [x] Configuración de tareas y depuración en VSCode.
+
+---
+
+## 🚀 Autor
+
+Hecho con ❤️ por **Alejsherion**.
