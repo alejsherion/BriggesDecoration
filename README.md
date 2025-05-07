@@ -21,7 +21,7 @@ Configurada para un entorno de desarrollo moderno usando **DevContainers**, **Do
 ## 📦 Estructura del Proyecto
 
 ```
-CortinasApp/
+BriggesDecoration/
 ├── .devcontainer/
 │   ├── devcontainer.json
 │   └── Dockerfile
@@ -50,8 +50,8 @@ CortinasApp/
 ### 1. Clonar el proyecto
 
 ```bash
-git clone https://github.com/tuusuario/cortinas-app.git
-cd cortinas-app
+git clone https://github.com/alejsherion/BriggesDecoration.git
+cd briggesdecoration
 ```
 
 ### 2. Abrir el proyecto en VSCode como **DevContainer**
@@ -164,6 +164,9 @@ También puedes usar `Ctrl+Shift+P → Run Task` en VSCode para:
 - [x] Dockerizado completamente.
 - [x] Makefile de automatización.
 - [x] Configuración de tareas y depuración en VSCode.
+- [ ] Login page
+- [ ] Register page
+- [ ] Implementación de Google storage 
 
 ---
 
